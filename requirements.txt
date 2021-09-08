@@ -1,0 +1,4 @@
+pytorch_lightning
+timm
+typed-argparse
+wandb
