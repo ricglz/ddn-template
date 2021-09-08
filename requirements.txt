@@ -1,4 +1,5 @@
 pytorch_lightning
 timm
+torchmetrics
 typed-argparse
 wandb

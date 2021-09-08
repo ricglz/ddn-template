@@ -8,15 +8,29 @@ class HparamsNamespace(TypedArgs):
 
     # Training
     epochs: int
+
+    # Classification
+    auto_augment: bool
+    auto_augment_policy: str
+    auto_augment_mstd: float
+    mixup: bool
+    mixup_alpha: float
     tta: int
 
     # Optimizer
-    div_factor: float
-    final_div_factor: float
     lookahead: bool
     lr: float
     optimizer: str
     weight_decay: float
+
+    # Scheduler
+    anneal_strategy: str
+    base_momentum: float
+    div_factor: float
+    final_div_factor: float
+    max_momentum: float
+    pct_start: float
+    three_phase: bool
 
     # Dataset
     batch_size: int
