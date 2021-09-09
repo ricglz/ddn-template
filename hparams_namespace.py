@@ -9,6 +9,13 @@ class HparamsNamespace(TypedArgs):
     # Training
     epochs: int
 
+    # Trainer
+    gradient_clip: float
+    precision: int
+    stages: int
+    train_bn: bool
+    unfreeze_per_step: int
+
     # Classification
     cutmix_alpha: float
     mixup: bool
