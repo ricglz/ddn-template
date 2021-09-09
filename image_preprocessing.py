@@ -1,6 +1,6 @@
 """Module for preprocess the dataset"""
 from glob import glob
-from os import listdir, mkdir, path, remove
+from os import mkdir, path, remove
 from pathlib import Path
 from shutil import move
 
@@ -68,14 +68,17 @@ def balance_dataset(dataset_path: str = training_path):
       T.ToTensor(),
     ])
     dataset = ImageFolder(dataset_path, transforms)
+    mayor_count = get_mayor_count(dataset)
     targets = np.array(dataset.targets)
     get_count = lambda target: np.count_nonzero(targets == target)
-    mayor_count = get_mayor_count(targets)
     for klass in range(len(dataset.classes)):
         class_count = get_count(klass)
         images_to_save = mayor_count - class_count
+        if images_to_save == 0:
+            continue
         class_indexes = np.where(targets == klass)[0]
-        random_chosen_indexes = np.random.choice(class_indexes, images_to_save, replace=False)
+        replace = len(class_indexes) < images_to_save
+        random_chosen_indexes = np.random.choice(class_indexes, images_to_save, replace=replace)
         for save_img_index, index in enumerate(tqdm(random_chosen_indexes)):
             img, label = dataset[index]
             save_image(img, label, save_img_index, 'balance')
