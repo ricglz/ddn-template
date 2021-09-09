@@ -1,1 +1,2 @@
 DATASET_SIZE = 100
+PROJECT_NAME = 'Project'

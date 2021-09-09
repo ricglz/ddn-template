@@ -53,10 +53,10 @@ class ClassificationModel(Model):
     @cached_property
     def transforms(self):
         hparams = self.hparams
-        if hparams.auto_augment:
+        if hparams.train_auto_augment:
             return AutoAugment(
-                hparams.auto_augment_policy,
-                hparams.auto_augment_mstd,
+                hparams.train_auto_augment_policy,
+                hparams.train_auto_augment_mstd,
             )
         return T.Compose([
             T.RandomVerticalFlip(),
@@ -86,10 +86,10 @@ class ClassificationModel(Model):
     @staticmethod
     def add_argparse_args(parent_parser):
         parser = Model.add_argparse_args(parent_parser)
-        parser.add_bool_argument('--auto-augment')
-        parser.add_argument('--auto-augment-mstd', type=float, default=0.5)
+        parser.add_bool_argument('--train-auto-augment')
+        parser.add_argument('--train-auto-augment-mstd', type=float, default=0.5)
         parser.add_argument(
-            '--auto-augment-policy',
+            '--train-auto-augment-policy',
             type=str,
             default='v0',
             choices=['original', 'originalr', 'v0', 'v0r']
