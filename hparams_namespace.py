@@ -11,10 +11,16 @@ class HparamsNamespace(TypedArgs):
 
     # Classification
     auto_augment: bool
-    auto_augment_policy: str
     auto_augment_mstd: float
+    auto_augment_policy: str
+    cutmix_alpha: float
     mixup: bool
     mixup_alpha: float
+    mixup_correct_lam: bool
+    mixup_label_smoothing: float
+    mixup_mode: str
+    mixup_prob: float
+    mixup_switch_prob: float
     tta: int
 
     # Optimizer
