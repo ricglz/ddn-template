@@ -30,7 +30,7 @@ parameters:
   augmix_mstd:
     distribution: uniform
     min: 0
-    min: 1
+    max: 1
   augmix_width:
     distribution: int_uniform
     min: 1
@@ -43,7 +43,7 @@ parameters:
   auto_augment_mstd:
     distribution: uniform
     min: 0
-    min: 1
+    max: 1
   auto_augment_policy:
     distribution: categorical
     values:
@@ -114,7 +114,7 @@ parameters:
   mixup_label_smoothing:
     distribution: uniform
     min: 0
-    min: 1
+    max: 1
   mixup_mode:
     distribution: categorical
     values:
@@ -124,11 +124,11 @@ parameters:
   mixup_prob:
     distribution: uniform
     min: 0
-    min: 1
+    max: 1
   mixup_switch_prob:
     distribution: uniform
     min: 0
-    min: 1
+    max: 1
   model_name:
     distribution: categorical
     values:
@@ -147,7 +147,7 @@ parameters:
   pct_start:
     distribution: uniform
     min: 0.3
-    min: 0.6
+    max: 0.6
   precision:
     distribution: categorical
     values:
@@ -165,7 +165,7 @@ parameters:
   train_auto_augment_mstd:
     distribution: uniform
     min: 0
-    min: 1
+    max: 1
   train_auto_augment_policy:
     distribution: categorical
     values:
