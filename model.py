@@ -194,6 +194,6 @@ class Model(LightningModule):
             '--optimizer',
             type=str,
             default='sgd',
-            choices=['sgd', 'adam', 'rmsprop']
+            choices=list(OPTIMIZERS.keys())
         )
         return parser

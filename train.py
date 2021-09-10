@@ -29,6 +29,7 @@ def main():
 
     args = get_args(model_class)
 
+    wandb.init()
     wandb.config.update(args)
     seed_everything(args.seed)
 
