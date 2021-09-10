@@ -60,7 +60,7 @@ class Model(LightningModule):
         # Freezer.make_trainable(self.base.get_classifier())
 
     # Properties
-    @cached_property
+    @property
     def total_steps(self):
         steps_per_epoch = DATASET_SIZE // self.hparams.batch_size
         return steps_per_epoch * self.hparams.epochs
@@ -70,11 +70,11 @@ class Model(LightningModule):
         value = div_factor * epochs / 5
         return value if epochs <= 5 else value * epochs ** 2
 
-    @cached_property
+    @property
     def div_factor(self):
         return self.general_div_factor(self.hparams.div_factor)
 
-    @cached_property
+    @property
     def final_div_factor(self):
         return self.general_div_factor(self.hparams.final_div_factor)
 
