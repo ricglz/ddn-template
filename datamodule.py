@@ -93,7 +93,7 @@ class DataModule(LightningDataModule):
         parser.add_bool_argument('--augmix')
         parser.add_bool_argument('--augmix_blend')
         parser.add_argument('--augmix_depth', type=int, default=1)
-        parser.add_argument('--augmix_magnitude', type=float, default=3)
+        parser.add_argument('--augmix_magnitude', type=int, default=3)
         parser.add_argument('--augmix_mstd', type=float, default=0)
         parser.add_argument('--augmix_width', type=int, default=3)
 
