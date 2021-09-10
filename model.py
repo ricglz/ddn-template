@@ -135,6 +135,7 @@ class Model(LightningModule):
         criterion = self.criterion(dataset)
         if isinstance(criterion, BCEWithLogitsLoss):
             y = y.float()
+        print(y_hat.size(), y.size())
         loss = criterion(y_hat, y)
         self._update_metrics(y_hat, batch[1], dataset)
         self.log(f'{dataset}_loss', loss, prog_bar=True)
