@@ -1,0 +1,189 @@
+method: random
+metric:
+  goal: maximize
+  name: test_score
+  target: 0.92
+parameters:
+  anneal_strategy:
+    distribution: categorical
+    values:
+      - linear
+      - cos
+  augmix:
+    distribution: categorical
+    values:
+      - false
+      - true
+  augmix_blend:
+    distribution: categorical
+    values:
+      - false
+      - true
+  augmix_depth:
+    distribution: int_uniform
+    min: 1
+    max: 4
+  augmix_magnitude:
+    distribution: int_uniform
+    min: 0
+    max: 9
+  augmix_mstd:
+    distribution: uniform
+    min: 0
+    min: 1
+  augmix_width:
+    distribution: int_uniform
+    min: 1
+    max: 5
+  auto_augment:
+    distribution: categorical
+    values:
+      - false
+      - true
+  auto_augment_mstd:
+    distribution: uniform
+    min: 0
+    min: 1
+  auto_augment_policy:
+    distribution: categorical
+    values:
+      - original
+      - originalr
+      - v0
+      - v0r
+  balanced_sampler:
+    distribution: categorical
+    values:
+      - false
+      - true
+  base_momentum:
+    distribution: uniform
+    min: 0.75
+    max: 0.85
+  cutmix_alpha:
+    distribution: uniform
+    min: 0
+    max: 1
+  div_factor:
+    distribution: log_uniform
+    min: 1.3010299957
+    max: 3.3010299957
+  drop_rate:
+    distribution: uniform
+    min: 0.4
+    max: 0.6
+  epochs:
+    distribution: int_uniform
+    min: 1
+    max: 20
+  final_div_factor:
+    distribution: log_uniform
+    min: 3.6989700043
+    max: 5.6989700043
+  gradient_clip:
+    distribution: uniform
+    min: 0
+    max: 1
+  lookahead:
+    distribution: categorical
+    values:
+      - false
+      - true
+  lr:
+    distribution: log_uniform
+    min: -4.0
+    max: -2.0
+  max_momentum:
+    distribution: uniform
+    min: 0.85
+    max: 0.95
+  mixup:
+    distribution: categorical
+    values:
+      - false
+      - true
+  mixup_alpha:
+    distribution: uniform
+    min: 0
+    max: 1
+  mixup_correct_lam:
+    distribution: categorical
+    values:
+      - false
+      - true
+  mixup_label_smoothing:
+    distribution: uniform
+    min: 0
+    min: 1
+  mixup_mode:
+    distribution: categorical
+    values:
+      - batch
+      - pair
+      - elem
+  mixup_prob:
+    distribution: uniform
+    min: 0
+    min: 1
+  mixup_switch_prob:
+    distribution: uniform
+    min: 0
+    min: 1
+  model_name:
+    distribution: categorical
+    values:
+      - efficientnetv2_rw_t
+      - gc_efficientnetv2_rw_t
+      - gernet_m
+      - repvgg_b3g4
+      - rexnet_200
+  optimizer:
+    distribution: categorical
+    values:
+      - adam
+      - radam
+      - rmsprop
+      - sgd
+  pct_start:
+    distribution: uniform
+    min: 0.3
+    min: 0.6
+  precision:
+    distribution: categorical
+    values:
+      - 16
+      - 32
+  stages:
+    distribution: int_uniform
+    min: 1
+    max: 5
+  train_auto_augment:
+    distribution: categorical
+    values:
+      - false
+      - true
+  train_auto_augment_mstd:
+    distribution: uniform
+    min: 0
+    min: 1
+  train_auto_augment_policy:
+    distribution: categorical
+    values:
+      - original
+      - originalr
+      - v0
+      - v0r
+  train_bn:
+    distribution: categorical
+    values:
+      - false
+      - true
+  unfreeze_per_step:
+    distribution: int_uniform
+    min: 18
+    max: 24
+  weight_decay:
+    distribution: log_uniform
+    min: -6.0
+    max: -2.0
+program: train.py
