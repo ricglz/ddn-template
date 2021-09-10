@@ -20,10 +20,10 @@ def parse_hparams(args: HparamsNamespace):
 
 def get_augmentations(args: HparamsNamespace) -> list:
     if args.auto_augment:
-        return AutoAugment(
+        return [AutoAugment(
             args.auto_augment_policy,
             { 'magnitude_std': args.auto_augment_mstd },
-        )
+        )]
     if args.augmix:
         config_str = parse_hparams(args)
         return [AugMix(config_str, {})]
