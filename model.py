@@ -179,8 +179,11 @@ class Model(LightningModule):
         parser.add_argument('--lr', type=float, required=True)
         parser.add_argument('--max_momentum', type=float, default=0.9)
         parser.add_argument('--pct_start', type=float, default=0.5)
-        parser.add_bool_argument('--three_phase')
         parser.add_argument('--weight_decay', type=float, default=0)
+
+        parser.add_bool_argument('--three_phase')
+        parser.add_bool_argument('--lookahead')
+
         parser.add_argument(
             '--anneal_strategy',
             type=str,

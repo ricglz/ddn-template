@@ -91,23 +91,23 @@ class DataModule(LightningDataModule):
         parser = ArgumentParser(parents=[parent_parser], add_help=False)
 
         parser.add_bool_argument('--augmix')
-        parser.add_bool_argument('--augmix-blend')
-        parser.add_argument('--augmix-depth', type=int, default=1)
-        parser.add_argument('--augmix-magnitude', type=float, default=3)
-        parser.add_argument('--augmix-mstd', type=float, default=0)
+        parser.add_bool_argument('--augmix_blend')
+        parser.add_argument('--augmix_depth', type=int, default=1)
+        parser.add_argument('--augmix_magnitude', type=float, default=3)
+        parser.add_argument('--augmix_mstd', type=float, default=0)
         parser.add_argument('--augmix-width', type=int, default=3)
 
-        parser.add_bool_argument('--auto-augment')
-        parser.add_argument('--auto-augment-mstd', type=float, default=0.5)
+        parser.add_bool_argument('--auto_augment')
+        parser.add_argument('--auto_augment_mstd', type=float, default=0.5)
         parser.add_argument(
-            '--auto-augment-policy',
+            '--auto_augment_policy',
             type=str,
             default='v0',
             choices=['original', 'originalr', 'v0', 'v0r']
         )
 
-        parser.add_bool_argument('--balanced-sampler')
-        parser.add_argument('--batch-size', type=int, default=32)
+        parser.add_bool_argument('--balanced_sampler')
+        parser.add_argument('--batch_size', type=int, default=32)
         return parser
 
     @staticmethod

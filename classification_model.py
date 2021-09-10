@@ -86,29 +86,29 @@ class ClassificationModel(Model):
     @staticmethod
     def add_argparse_args(parent_parser):
         parser = Model.add_argparse_args(parent_parser)
-        parser.add_bool_argument('--train-auto-augment')
-        parser.add_argument('--train-auto-augment-mstd', type=float, default=0.5)
+        parser.add_bool_argument('--train_auto_augment')
+        parser.add_argument('--train_auto_augment_mstd', type=float, default=0.5)
         parser.add_argument(
-            '--train-auto-augment-policy',
+            '--train_auto_augment_policy',
             type=str,
             default='v0',
             choices=['original', 'originalr', 'v0', 'v0r']
         )
 
-        parser.add_argument('--cutmix-alpha', type=float, default=0)
+        parser.add_argument('--cutmix_alpha', type=float, default=0)
 
         parser.add_bool_argument('--mixup')
-        parser.add_argument('--mixup-alpha', type=float, default=1)
-        parser.add_bool_argument('--mixup-correct-lam')
-        parser.add_argument('--mixup-label-smoothing', type=float, default=0.1)
+        parser.add_argument('--mixup_alpha', type=float, default=1)
+        parser.add_bool_argument('--mixup_correct_lam')
+        parser.add_argument('--mixup_label_smoothing', type=float, default=0.1)
         parser.add_argument(
-            '--mixup-mode',
+            '--mixup_mode',
             type=str,
             default='batch',
             choices=['batch', 'pair', 'elem']
         )
-        parser.add_argument('--mixup-prob', type=float, default=1)
-        parser.add_argument('--mixup-switch-prob', type=float, default=0.5)
+        parser.add_argument('--mixup_prob', type=float, default=1)
+        parser.add_argument('--mixup_switch_prob', type=float, default=0.5)
 
         parser.add_argument('--tta', type=int, default=0)
         return parser
