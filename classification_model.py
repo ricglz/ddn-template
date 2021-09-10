@@ -18,7 +18,7 @@ class ClassificationModel(Model):
         super().__init__(hparams)
         self.mixup = self.build_mixup()
 
-    def build_model(self):
+    def build_base(self):
         return create_model(
             self.hparams.model_name,
             pretrained=True,
