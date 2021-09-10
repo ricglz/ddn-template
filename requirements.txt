@@ -1,5 +1,5 @@
-pytorch_lightning
-timm
-torchmetrics
-typed-argparse
-wandb
+pytorch_lightning==1.45
+timm==0.4.12
+torchmetrics==0.5.1
+typed-argparse==0.1.2
+wandb==0.12.1
