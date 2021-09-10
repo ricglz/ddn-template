@@ -9,6 +9,7 @@ from torch.nn import Module, ModuleDict, BCEWithLogitsLoss
 from torch.optim import Adam, RMSprop, SGD
 from torch.optim.lr_scheduler import OneCycleLR
 
+from callbacks import Freezer
 from constant import DATASET_SIZE
 from hparams_namespace import HparamsNamespace
 from utils import CustomParser as ArgumentParser
@@ -57,7 +58,7 @@ class Model(LightningModule):
 
     def just_train_classifier(self):
         self.freeze()
-        # Freezer.make_trainable(self.base.get_classifier())
+        Freezer.make_trainable(self.base.get_classifier())
 
     # Properties
     @property
