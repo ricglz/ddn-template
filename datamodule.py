@@ -15,8 +15,8 @@ from utils import CustomParser as ArgumentParser, get_data_dir
 from hparams_namespace import HparamsNamespace
 
 def parse_hparams(args: HparamsNamespace):
-    config_str = f'augmix-m{args.magnitude}-w{args.width}'
-    return f'{config_str}-d{args.depth}-mstd{args.mstd}-b{args.augmix_blend}'
+    config_str = f'augmix-m{args.augmix_magnitude}-w{args.augmix_width}'
+    return f'{config_str}-d{args.augmix_depth}-mstd{args.augmix_mstd}-b{args.augmix_blend}'
 
 def get_augmentations(args: HparamsNamespace) -> list:
     if args.auto_augment:
@@ -95,7 +95,7 @@ class DataModule(LightningDataModule):
         parser.add_argument('--augmix_depth', type=int, default=1)
         parser.add_argument('--augmix_magnitude', type=float, default=3)
         parser.add_argument('--augmix_mstd', type=float, default=0)
-        parser.add_argument('--augmix-width', type=int, default=3)
+        parser.add_argument('--augmix_width', type=int, default=3)
 
         parser.add_bool_argument('--auto_augment')
         parser.add_argument('--auto_augment_mstd', type=float, default=0.5)
