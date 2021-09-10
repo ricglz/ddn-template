@@ -133,8 +133,10 @@ parameters:
     distribution: categorical
     values:
       - efficientnetv2_rw_t
-      - gc_efficientnetv2_rw_t
+      - densenet121
       - gernet_m
+      - gmixer_24_224
+      - mobilenetv3_large_100
       - repvgg_b3g4
       - rexnet_200
   optimizer:
