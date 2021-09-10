@@ -1,6 +1,4 @@
 '''Classification model module'''
-from functools import cached_property
-
 from torchmetrics import Accuracy, F1, MetricCollection
 
 from timm import create_model
@@ -16,8 +14,11 @@ from model import Model
 class ClassificationModel(Model):
     num_classes = 2
 
-    @cached_property
-    def model(self):
+    def __init__(self, hparams):
+        super().__init__(hparams)
+        self.mixup = self.build_mixup()
+
+    def build_model(self):
         return create_model(
             self.hparams.model_name,
             pretrained=True,
@@ -25,20 +26,16 @@ class ClassificationModel(Model):
             drop_rate=self.hparams.drop_rate
         )
 
-    @cached_property
-    def activation(self):
+    def build_activation(self):
         return lambda y_val: softmax(y_val, dim=1)
 
-    @cached_property
-    def train_criterion(self):
+    def build_train_criterion(self):
         return SoftTargetCrossEntropy
 
-    @cached_property
-    def val_criterion(self):
+    def build_val_criterion(self):
         return CrossEntropyLoss
 
-    @cached_property
-    def metrics(self):
+    def build_metrics(self):
         general_metrics = [
             Accuracy(compute_on_step=False),
             F1(num_classes=2, compute_on_step=False),
@@ -50,8 +47,7 @@ class ClassificationModel(Model):
             'val_metrics': metric.clone(),
         })
 
-    @cached_property
-    def transforms(self):
+    def build_transforms(self):
         hparams = self.hparams
         if hparams.train_auto_augment:
             return AutoAugment(
@@ -64,8 +60,7 @@ class ClassificationModel(Model):
             T.RandomRotation(5),
         ])
 
-    @cached_property
-    def mixup(self):
+    def build_mixup(self):
         hparams = self.hparams
         return FastCollateMixup(
             hparams.mixup_alpha,

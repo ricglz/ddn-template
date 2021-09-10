@@ -1,5 +1,4 @@
 """Model module"""
-from functools import cached_property
 from typing import Callable
 
 from pytorch_lightning import LightningModule
@@ -30,29 +29,30 @@ class Model(LightningModule):
 
         self.save_hyperparameters(hparams)
 
+        self.base = self.build_base()
+        self.activation = self.build_activation()
+        self.train_criterion = self.build_train_criterion()
+        self.val_criterion = self.build_val_criterion()
+        self.metrics = self.build_metrics()
+        self.transforms = self.build_transforms()
+
     # Building functions
-    @cached_property
-    def base(self) -> Module:
+    def build_base(self) -> Module:
         raise NotImplementedError()
 
-    @cached_property
-    def activation(self) -> Callable:
+    def build_activation(self) -> Callable:
         raise NotImplementedError()
 
-    @cached_property
-    def train_criterion(self) -> Module:
+    def build_train_criterion(self) -> Module:
         raise NotImplementedError()
 
-    @cached_property
-    def val_criterion(self) -> Module:
+    def build_val_criterion(self) -> Module:
         raise NotImplementedError()
 
-    @cached_property
-    def metrics(self) -> ModuleDict:
+    def build_metrics(self) -> ModuleDict:
         raise NotImplementedError()
 
-    @cached_property
-    def transforms(self) -> Module:
+    def build_transforms(self) -> Module:
         raise NotADirectoryError()
 
     def just_train_classifier(self):
