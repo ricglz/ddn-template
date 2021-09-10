@@ -94,7 +94,9 @@ class ClassificationModel(Model):
         return self(x, tta)
 
     def _get_loss(self, criterion, y_hat, y):
-        return criterion(y_hat, y.unsqueeze(1))
+        if isinstance(criterion, SoftTargetCrossEntropy):
+            y = y.unsqueeze(1)
+        return criterion(y_hat, y)
 
     @staticmethod
     def add_argparse_args(parent_parser):
