@@ -13,8 +13,9 @@ from constant import FAST_DEV_RUN
 
 @dataclass
 class Trainer():
-    gradient_clip: float = 0.0
     model_name: str
+
+    gradient_clip: float = 0.0
     precision: int = 16
     stages: int = 1
     train_bn: bool = False
@@ -77,8 +78,8 @@ class Trainer():
     @staticmethod
     def from_argparse_args(args):
         return Trainer(
-            args.gradient_clip,
             args.model_name,
+            args.gradient_clip,
             args.precision,
             args.stages,
             args.train_bn,
