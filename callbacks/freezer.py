@@ -9,6 +9,7 @@ class Freezer(pl_callbacks.BaseFinetuning):
     trainable_layers = []
 
     def __init__(self, epochs=40, stages=2, unfreeze_per_step=21, train_bn=False):
+        super().__init__()
         self.unfreeze_per_step = unfreeze_per_step
         self.step_size = ceil(epochs / stages)
 
