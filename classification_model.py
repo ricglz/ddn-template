@@ -30,10 +30,10 @@ class ClassificationModel(Model):
         return lambda y_val: softmax(y_val, dim=1)
 
     def build_train_criterion(self):
-        return SoftTargetCrossEntropy
+        return SoftTargetCrossEntropy()
 
     def build_val_criterion(self):
-        return CrossEntropyLoss
+        return CrossEntropyLoss()
 
     def build_metrics(self):
         general_metrics = [
