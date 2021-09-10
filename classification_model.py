@@ -89,6 +89,9 @@ class ClassificationModel(Model):
         tta = self.hparams.tta if dataset == 'test' else 0
         return self(x, tta)
 
+    def _get_loss(self, criterion, y_hat, y):
+        return criterion(y_hat, y.unsqueeze(1))
+
     @staticmethod
     def add_argparse_args(parent_parser):
         parser = Model.add_argparse_args(parent_parser)

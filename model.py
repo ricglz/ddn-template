@@ -129,14 +129,14 @@ class Model(LightningModule):
         return self.train_criterion if dataset == 'train' \
                                     else self.val_criterion
 
+    def _get_loss(self, criterion, y_hat, y):
+        return criterion(y_hat, y)
+
     def _on_step(self, batch, dataset):
         x, y = self._process_batch(batch, dataset)
         y_hat = self._process_y_hat(x, dataset)
         criterion = self.criterion(dataset)
-        if isinstance(criterion, BCEWithLogitsLoss):
-            y = y.float()
-        print(y_hat.size(), y.size())
-        loss = criterion(y_hat, y)
+        loss = self._get_loss(criterion, y_hat, y)
         self._update_metrics(y_hat, batch[1], dataset)
         self.log(f'{dataset}_loss', loss, prog_bar=True)
         return loss
