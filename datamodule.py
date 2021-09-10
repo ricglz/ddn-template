@@ -22,7 +22,7 @@ def get_augmentations(args: HparamsNamespace) -> list:
     if args.auto_augment:
         return AutoAugment(
             args.auto_augment_policy,
-            args.auto_augment_mstd,
+            { 'magnitude_std': args.auto_augment_mstd },
         )
     if args.augmix:
         config_str = parse_hparams(args)

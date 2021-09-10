@@ -52,7 +52,7 @@ class ClassificationModel(Model):
         if hparams.train_auto_augment:
             return AutoAugment(
                 hparams.train_auto_augment_policy,
-                hparams.train_auto_augment_mstd,
+                { 'magnitude_std': hparams.train_auto_augment_mstd },
             )
         return T.Compose([
             T.RandomVerticalFlip(),
