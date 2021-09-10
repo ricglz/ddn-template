@@ -5,6 +5,7 @@ from timm import create_model
 from timm.data import auto_augment_transform as AutoAugment, FastCollateMixup
 from timm.loss import SoftTargetCrossEntropy
 
+from torch import stack
 from torch.nn import CrossEntropyLoss, ModuleDict
 from torch.nn.functional import sigmoid, softmax
 import torchvision.transforms as T
@@ -74,9 +75,19 @@ class ClassificationModel(Model):
             self.num_classes
         )
 
+    def forward(self, x, tta = 0):
+        if tta == 0:
+            return self.base(x)
+        y_hat_stack = stack([self(self.transform(x)) for _ in range(tta)])
+        return y_hat_stack.mean(dim=0)
+
     def _process_batch(self, batch, dataset):
         should_perform_mixup = self.hparams.mixup and dataset == 'train'
         return self.mixup(batch) if should_perform_mixup else batch
+
+    def _process_y_hat(self, x, dataset):
+        tta = self.hparams.tta if dataset == 'test' else 0
+        return self(x, tta)
 
     @staticmethod
     def add_argparse_args(parent_parser):
