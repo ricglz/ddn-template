@@ -38,7 +38,7 @@ class ClassificationModel(Model):
     def build_metrics(self):
         general_metrics = [
             Accuracy(compute_on_step=False),
-            F1(num_classes=2, compute_on_step=False),
+            F1(num_classes=self.num_classes, compute_on_step=False),
         ]
         metric = MetricCollection(general_metrics)
         return ModuleDict({
