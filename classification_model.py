@@ -31,7 +31,7 @@ class ClassificationModel(Model):
         return lambda y_val: softmax(y_val, dim=1)
 
     def build_train_criterion(self):
-        return SoftTargetCrossEntropy()
+        return SoftTargetCrossEntropy() if self.hparams.mixup else CrossEntropyLoss()
 
     def build_val_criterion(self):
         return CrossEntropyLoss()
