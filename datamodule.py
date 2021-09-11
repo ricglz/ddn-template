@@ -71,7 +71,7 @@ class DataModule(LightningDataModule):
     def _general_dataloader(self, dataset, **kwargs):
         return DataLoader(
             dataset, batch_size=self.batch_size, num_workers=cpu_count(),
-            drop_last=True, pin_memory=True, **kwargs)
+            drop_last=True, pin_memory=False, **kwargs)
 
     def train_dataloader(self):
         if self.use_balanced_sampler:
