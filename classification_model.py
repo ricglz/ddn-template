@@ -83,7 +83,7 @@ class ClassificationModel(Model):
 
     def _process_batch(self, batch, dataset):
         should_perform_mixup = self.hparams.mixup and dataset == 'train'
-        return self.mixup((x, y)) if should_perform_mixup else batch
+        return self.mixup(batch[0], batch[1]) if should_perform_mixup else batch
 
     def _process_y_hat(self, x, dataset):
         tta = self.hparams.tta if dataset == 'test' else 0
