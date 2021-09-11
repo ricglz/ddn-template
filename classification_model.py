@@ -78,7 +78,7 @@ class ClassificationModel(Model):
     def forward(self, x, tta = 0):
         if tta == 0:
             return self.base(x)
-        y_hat_stack = stack([self(self.transform(x)) for _ in range(tta)])
+        y_hat_stack = stack([self(self.transforms(x)) for _ in range(tta)])
         return y_hat_stack.mean(dim=0)
 
     def _process_batch(self, batch, dataset):
