@@ -1,11 +1,12 @@
 """Model module"""
+from math import ceil
 from typing import Callable
 
 from pytorch_lightning import LightningModule
 from timm.optim import Lookahead, RAdam
 
 from torch import stack
-from torch.nn import Module, ModuleDict, BCEWithLogitsLoss
+from torch.nn import Module, ModuleDict
 from torch.optim import Adam, RMSprop, SGD
 from torch.optim.lr_scheduler import OneCycleLR
 
@@ -63,7 +64,7 @@ class Model(LightningModule):
     # Properties
     @property
     def total_steps(self):
-        steps_per_epoch = DATASET_SIZE // self.hparams.batch_size
+        steps_per_epoch = ceil(DATASET_SIZE / self.hparams.batch_size)
         return steps_per_epoch * self.hparams.epochs
 
     def general_div_factor(self, div_factor):
