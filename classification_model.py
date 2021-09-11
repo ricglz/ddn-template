@@ -51,10 +51,15 @@ class ClassificationModel(Model):
     def build_transforms(self):
         hparams = self.hparams
         if hparams.train_auto_augment:
-            return AutoAugment(
+            auto_augment = AutoAugment(
                 hparams.train_auto_augment_policy,
                 { 'magnitude_std': hparams.train_auto_augment_mstd },
             )
+            return T.Compose([
+                T.ToPILImage(),
+                auto_augment,
+                T.ToTensor(),
+            ])
         return T.Compose([
             T.RandomVerticalFlip(),
             T.RandomHorizontalFlip(),
