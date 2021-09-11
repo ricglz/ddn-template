@@ -2,7 +2,7 @@
 from torchmetrics import Accuracy, F1, MetricCollection
 
 from timm import create_model
-from timm.data import auto_augment_transform as AutoAugment, FastCollateMixup
+from timm.data import auto_augment_transform as AutoAugment, Mixup
 from timm.loss import SoftTargetCrossEntropy
 
 from torch import stack
@@ -63,7 +63,7 @@ class ClassificationModel(Model):
 
     def build_mixup(self):
         hparams = self.hparams
-        return FastCollateMixup(
+        return Mixup(
             hparams.mixup_alpha,
             hparams.cutmix_alpha,
             None,
@@ -83,11 +83,7 @@ class ClassificationModel(Model):
 
     def _process_batch(self, batch, dataset):
         should_perform_mixup = self.hparams.mixup and dataset == 'train'
-        if should_perform_mixup:
-            x = [elem.cpu().numpy() for elem in batch[0]]
-            y = [elem.cpu().numpy() for elem in batch[1]]
-            return self.mixup((x, y))
-        return batch
+        return self.mixup((x, y)) if should_perform_mixup else batch
 
     def _process_y_hat(self, x, dataset):
         tta = self.hparams.tta if dataset == 'test' else 0
