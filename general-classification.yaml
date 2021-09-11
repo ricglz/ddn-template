@@ -66,8 +66,8 @@ parameters:
     max: 1
   div_factor:
     distribution: log_uniform
-    min: 1.3010299957
-    max: 3.3010299957
+    min: 2.9957322736
+    max: 7.6009024596
   drop_rate:
     distribution: uniform
     min: 0.4
@@ -78,8 +78,8 @@ parameters:
     max: 20
   final_div_factor:
     distribution: log_uniform
-    min: 3.6989700043
-    max: 5.6989700043
+    min: 8.5171931913
+    max: 13.1223633773
   gradient_clip:
     distribution: uniform
     min: 0
@@ -91,8 +91,8 @@ parameters:
       - true
   lr:
     distribution: log_uniform
-    min: -4.0
-    max: -2.0
+    min: -9.210340372
+    max: -4.605170186
   max_momentum:
     distribution: uniform
     min: 0.85
@@ -180,12 +180,16 @@ parameters:
     values:
       - false
       - true
+  tta:
+    distribution: int_uniform
+    min: 0
+    max: 5
   unfreeze_per_step:
     distribution: int_uniform
     min: 18
     max: 24
   weight_decay:
     distribution: log_uniform
-    min: -6.0
-    max: -2.0
+    min: -13.815510558
+    max: -4.605170186
 program: train.py
